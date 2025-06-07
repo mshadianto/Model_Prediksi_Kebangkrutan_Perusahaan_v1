@@ -1,3 +1,4 @@
+update langsung disini aja
 import streamlit as st
 import pandas as pd
 import joblib
