@@ -255,7 +255,7 @@ st.markdown(
     "Menganalisis Risiko Kebangkrutan dengan *Optimized Ensemble Model*, *Explainable AI*, dan *Time Series Forecasting*.")
 
 st.sidebar.header("⚙️ Panel Analisis")
-ticker_input = st.sidebar.text_input("Masukkan Ticker Saham (.JK)", "ASII.JK").upper()
+ticker_input = st.sidebar.text_input("Masukkan Ticker Saham (.JK)").upper()
 analyze_button = st.sidebar.button("Analisis Sekarang!", type="primary", use_container_width=True)
 
 if analyze_button:
