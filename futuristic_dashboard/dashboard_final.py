@@ -14,8 +14,6 @@ from datetime import datetime
 st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
 st.write("✅ App berhasil dijalankan! Memulai load model...")
 
-st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
-
 # --- Konfigurasi Aplikasi ---
 APP_VERSION = "1.0.7" # Versi Aplikasi (diperbarui)
 AUTHOR_NAME = "MS Hadianto" # Nama Pembuat
