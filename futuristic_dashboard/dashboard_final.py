@@ -9,11 +9,7 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing
 import plotly.express as px
 from datetime import datetime
 
-# Logging awal
-st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
-st.write("✅ App berhasil dijalankan! Memulai load model...")
-
-# Suppress warnings
+# Suppress warnings from statsmodels and yfinance
 warnings.filterwarnings('ignore', category=FutureWarning)
 warnings.filterwarnings('ignore', category=UserWarning)
 
@@ -50,21 +46,15 @@ def load_artifacts():
     """Memuat artefak model 'Highest Power'."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     models_dir = os.path.join(script_dir, 'models')
-
     try:
         model = joblib.load(os.path.join(models_dir, 'highest_power_model.joblib'))
         scaler = joblib.load(os.path.join(models_dir, 'highest_power_scaler.joblib'))
         feature_names = joblib.load(os.path.join(models_dir, 'highest_power_feature_names.joblib'))
         feature_importances = joblib.load(os.path.join(models_dir, 'highest_power_feature_importances.joblib'))
-
         return model, scaler, feature_names, feature_importances
-
-    except FileNotFoundError as e:
-        st.error(f"❌ FileNotFoundError: {e}")
-        st.stop()
-    except Exception as e:
-        st.error(f"❌ Error saat load model: {e}")
-        st.stop()
+    except FileNotFoundError:
+        st.error("Kesalahan: File model tidak ditemukan. Pastikan Anda telah menjalankan `train_ultimate_model.py` (jika ada) dan file model ada di direktori `models`.")
+        return None, None, None, None
 
 def get_forecast(series: pd.Series, series_name: str = "Data", fill_method='interpolate'):
     """
