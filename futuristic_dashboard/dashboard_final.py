@@ -1,6 +1,7 @@
 import streamlit as st
 st.write("✅ App started... loading model next")
-
+import streamlit as st
+st.write("✅ App masuk ke dalam script dan mulai running...")
 import streamlit as st
 import pandas as pd
 import joblib
