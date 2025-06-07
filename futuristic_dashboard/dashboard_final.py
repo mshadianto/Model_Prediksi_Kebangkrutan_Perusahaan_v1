@@ -1,8 +1,4 @@
 import streamlit as st
-st.write("✅ App started... loading model next")
-import streamlit as st
-st.write("✅ App masuk ke dalam script dan mulai running...")
-import streamlit as st
 import pandas as pd
 import joblib
 import os
@@ -13,7 +9,11 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing
 import plotly.express as px
 from datetime import datetime
 
-# Suppress warnings from statsmodels and yfinance
+# Logging awal
+st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
+st.write("✅ App berhasil dijalankan! Memulai load model...")
+
+# Suppress warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 warnings.filterwarnings('ignore', category=UserWarning)
 
