@@ -10,8 +10,9 @@ import plotly.express as px
 from datetime import datetime
 
 # Suppress warnings from statsmodels and yfinance
-warnings.filterwarnings('ignore', category=FutureWarning)
-warnings.filterwarnings('ignore', category=UserWarning)
+# Setup config dan logging awal
+st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
+st.write("✅ App berhasil dijalankan! Memulai load model...")
 
 st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
 
