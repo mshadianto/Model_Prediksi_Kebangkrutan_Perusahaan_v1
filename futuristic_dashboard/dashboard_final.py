@@ -184,7 +184,14 @@ def generate_professional_narrative(result):
     return p1
 
 @st.cache_data
-def get_prediction_and_trends(_ticker_str, model, scaler, feature_names, feature_importances):
+def get_prediction_and_trends(_ticker_str):
+    # Panggil fungsi yang memuat resource di dalam sini
+    model, scaler, feature_names, feature_importances = load_artifacts()
+    
+    # Tambahkan pemeriksaan jika model gagal dimuat
+    if model is None:
+        return {'error': "Artefak model tidak berhasil dimuat. Aplikasi tidak bisa melanjutkan."}
+
     try:
         ticker = yf.Ticker(_ticker_str)
         info = ticker.info
@@ -243,14 +250,9 @@ def get_prediction_and_trends(_ticker_str, model, scaler, feature_names, feature
 # =====================================================================
 # Antarmuka Pengguna (UI)
 # =====================================================================
-st.title("🌟 Futuristic Analytics Dashboard")
+st.title("🌟 Machine Learning Model Prediksi Kebangkrutan Perusahaan")
 st.markdown(
     "Menganalisis Risiko Kebangkrutan dengan *Optimized Ensemble Model*, *Explainable AI*, dan *Time Series Forecasting*.")
-
-model, scaler, feature_names, feature_importances = load_artifacts()
-
-if model is None:
-    st.stop()
 
 st.sidebar.header("⚙️ Panel Analisis")
 ticker_input = st.sidebar.text_input("Masukkan Ticker Saham (.JK)", "ASII.JK").upper()
@@ -261,7 +263,7 @@ if analyze_button:
         st.warning("Mohon masukkan ticker saham.", icon="⚠️")
     else:
         with st.spinner(f"Menganalisis **{ticker_input}**..."):
-            result = get_prediction_and_trends(ticker_input, model, scaler, feature_names, feature_importances)
+            result = get_prediction_and_trends(ticker_input)
 
         st.header(f"Hasil Analisis untuk {ticker_input}", divider='rainbow')
 
