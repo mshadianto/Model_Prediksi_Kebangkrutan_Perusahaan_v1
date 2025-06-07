@@ -49,15 +49,21 @@ def load_artifacts():
     """Memuat artefak model 'Highest Power'."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     models_dir = os.path.join(script_dir, 'models')
+
     try:
         model = joblib.load(os.path.join(models_dir, 'highest_power_model.joblib'))
         scaler = joblib.load(os.path.join(models_dir, 'highest_power_scaler.joblib'))
         feature_names = joblib.load(os.path.join(models_dir, 'highest_power_feature_names.joblib'))
         feature_importances = joblib.load(os.path.join(models_dir, 'highest_power_feature_importances.joblib'))
+
         return model, scaler, feature_names, feature_importances
-    except FileNotFoundError:
-        st.error("Kesalahan: File model tidak ditemukan. Pastikan Anda telah menjalankan `train_ultimate_model.py` (jika ada) dan file model ada di direktori `models`.")
-        return None, None, None, None
+
+    except FileNotFoundError as e:
+        st.error(f"❌ FileNotFoundError: {e}")
+        st.stop()
+    except Exception as e:
+        st.error(f"❌ Error saat load model: {e}")
+        st.stop()
 
 def get_forecast(series: pd.Series, series_name: str = "Data", fill_method='interpolate'):
     """
