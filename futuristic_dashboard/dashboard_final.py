@@ -10,9 +10,10 @@ import plotly.express as px
 from datetime import datetime
 
 # Suppress warnings from statsmodels and yfinance
-# Setup config dan logging awal
+warnings.filterwarnings('ignore', category=FutureWarning)
+warnings.filterwarnings('ignore', category=UserWarning)
+
 st.set_page_config(page_title="Futuristic Analytics Dashboard", layout="wide", initial_sidebar_state="expanded")
-st.write("✅ App berhasil dijalankan! Memulai load model...")
 
 # --- Konfigurasi Aplikasi ---
 APP_VERSION = "1.0.7" # Versi Aplikasi (diperbarui)
@@ -559,4 +560,3 @@ Versi Aplikasi: <b>{APP_VERSION}</b> | Dibuat oleh: <b>{AUTHOR_NAME}</b>
 """, unsafe_allow_html=True)
 
 st.markdown("<div style='font-size: 0.7em; color: #999999; text-align: center; margin-top: 0.5em;'>Dibuat dengan Streamlit, Plotly Express, dan Model AI</div>", unsafe_allow_html=True)
-
