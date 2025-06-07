@@ -183,11 +183,11 @@ def generate_professional_narrative(result):
 
     return p1
 
-@st.cache_data
+# @st.cache_data <--- Hapus atau beri tanda komentar pada baris ini
 def get_prediction_and_trends(_ticker_str):
     # Panggil fungsi yang memuat resource di dalam sini
     model, scaler, feature_names, feature_importances = load_artifacts()
-    
+    # ... (sisa kode fungsi ini tetap sama) ...    
     # Tambahkan pemeriksaan jika model gagal dimuat
     if model is None:
         return {'error': "Artefak model tidak berhasil dimuat. Aplikasi tidak bisa melanjutkan."}
